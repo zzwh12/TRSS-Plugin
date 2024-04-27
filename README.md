@@ -31,8 +31,8 @@
 2. 安装：[GitHub](https://github.com/TimeRainStarSky/TRSS-Plugin) 或 [Gitee](https://gitee.com/TimeRainStarSky/TRSS-Plugin)
 
 ```
-git clone --depth 1 https://Yunzai.TRSS.me plugins/TRSS-Plugin
-pnpm i
+git clone --depth=1 https://gitee.com/zzwh12/TRSS-plugin ./plugins/TRSS-Plugin/
+pnpm install --filter=TRSS-Plugin
 ```
 
 3. 安装 `图片修复` | `图片背景去除` | `语音合成`，不用可忽略
