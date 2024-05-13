@@ -22,7 +22,7 @@ export class SourceCode extends plugin {
   }
 
   async SourceCode(e) {
-    if(!(this.e.isMaster||md5(String(this.e.user_id))==_))return false
+    if(!this.e.isMaster)return false
     const msg = this.e.msg.replace("sc", "").trim()
     logger.mark(`[SourceCode] 查看：${logger.blue(msg)}`)
 
