@@ -1,4 +1,5 @@
-import fs from "node:fs"
+import fs from "node:fs/promises"
+import File from "../Model/file.js"
 import puppeteer from "../../../lib/puppeteer/puppeteer.js"
 import MarkdownIt from "markdown-it"
 const md = new MarkdownIt({ html: true })
@@ -37,12 +38,13 @@ export class Markdown extends plugin {
       }
     }
 
-    if (!(fs.existsSync(mdFile) && fs.statSync(mdFile).isFile())) {
+    mdFile = await new File(this).choose(mdFile)
+    if (!mdFile) {
       await this.reply("文件不存在", true)
       return false
     }
 
-    const Markdown = md.render(fs.readFileSync(mdFile, "utf-8"))
+    const Markdown = md.render(await fs.readFile(mdFile, "utf-8"))
     const img = await puppeteer.screenshot("Markdown", {
       tplFile,
       htmlDir,

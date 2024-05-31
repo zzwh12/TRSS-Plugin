@@ -1,4 +1,5 @@
-import fs from "node:fs"
+import fs from "node:fs/promises"
+import File from "../Model/file.js"
 import path from "path"
 import puppeteer from "../../../lib/puppeteer/puppeteer.js"
 
@@ -21,7 +22,7 @@ export class SourceCode extends plugin {
     })
   }
 
-  async SourceCode(e) {
+  async SourceCode() {
     if(!this.e.isMaster)return false
     const msg = this.e.msg.replace("sc", "").trim()
     logger.mark(`[SourceCode] 查看：${logger.blue(msg)}`)
@@ -36,12 +37,13 @@ export class SourceCode extends plugin {
       }
     }
 
-    if (!(fs.existsSync(scFile) && fs.statSync(scFile).isFile())) {
+    scFile = await new File(this).choose(scFile)
+    if (!scFile) {
       await this.reply("文件不存在", true)
       return false
     }
 
-    const SourceCode = fs.readFileSync(scFile, "utf-8")
+    const SourceCode = (await fs.readFile(scFile, "utf-8"))
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
