@@ -1,9 +1,14 @@
-##安装插件
+
+# TRSS Yunzai Plugin
+
+云崽机器人插件
+
+## 安装插件
 
 ```
 git clone https://gitee.com/zzwh12/TRSS-Plugin.git ./plugins/TRSS-Plugin/
 ```
-##安装依赖
+## 安装依赖
 ```
 pnpm install --filter=TRSS-Plugin
 ```
