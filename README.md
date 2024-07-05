@@ -6,8 +6,13 @@
 ## 安装插件
 
 ```
-git clone https://gitee.com/zzwh12/TRSS-Plugin.git ./plugins/TRSS-Plugin/
+git clone --depth=1 https://gitee.com/zzwh12/TRSS-Plugin.git ./plugins/TRSS-Plugin/
 ```
+
+```
+git clone --depth=1 https://github.com/zzwh12/TRSS-Plugin.git ./plugins/TRSS-Plugin/
+```
+
 ## 安装依赖
 ```
 pnpm install --filter=TRSS-Plugin
