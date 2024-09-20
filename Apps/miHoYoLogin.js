@@ -10,7 +10,6 @@ MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDvekdPMHN3AYhm/vktJT+YJr7cI5DcsNKqdsx5DZX
 9ExXCdvqrn51qELbqj0XxtMTIpaCHFSI50PfPpTFV9Xt/hmyVwokoOXFlAEgCn+Q
 CgGs52bFoYMtyi+xEQIDAQAB
 -----END PUBLIC KEY-----`
-const app_id = 2
 
 function random_string(n) {
   return _.sampleSize("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", n).join("")
@@ -178,6 +177,8 @@ export class miHoYoLogin extends plugin {
   }
 
   async miHoYoLoginQRCode() {
+    const numbers = [2, 7]
+    const app_id = _.sample(numbers)
     if (Running[this.e.user_id]) {
       this.reply(["请使用米游社扫码登录", Running[this.e.user_id]], true, { at: true, recallMsg: 60 })
       return true
