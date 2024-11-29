@@ -69,7 +69,7 @@ export class miHoYoLogin extends plugin {
       priority: 10,
       rule: [
         {
-          reg: `(${regex}|^#(扫码|二维码|辅助)(登录|绑定|登陆))$`,
+          reg: `(${regex}|^#?(扫码|二维码|辅助)(登录|绑定|登陆))$`,
           fnc: "miHoYoLoginQRCode"
         },
         {
