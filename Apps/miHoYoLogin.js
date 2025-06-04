@@ -56,7 +56,7 @@ async function request(url, data, aigis) {
   })
 }
 
-const errorTips = "登录失败，请检查日志\nhttps://Yunzai.TRSS.me"
+const errorTips = "登录失败，请检查日志"
 const accounts = {}
 const Running = {}
 
